@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -23,8 +25,7 @@ jobs:
 
       - name: Get PR diff
         run: |
-          git fetch origin main
-          git diff origin/main...HEAD -- src/ tests/ > pr.diff || true
+          git diff origin/main HEAD -- src/ tests/ > pr.diff || true
 
       - name: Run AI review
         run: python .github/scripts/review.py
