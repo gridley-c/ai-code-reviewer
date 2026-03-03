@@ -1,3 +1,5 @@
+API_KEY = "sk-prod-abc123secretkey"  # TODO: move this later
+
 def add(a, b):
     return a + b
 
