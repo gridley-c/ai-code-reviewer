@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from calculator import add, subtract, multiply, divide
+from calculator import add, subtract, multiply, divide, modulo
 import pytest
 
 def test_add():
@@ -24,3 +24,11 @@ def test_divide():
 def test_divide_by_zero():
     with pytest.raises(ValueError):
         divide(1, 0)
+
+def test_modulo():
+    assert modulo(10, 3) == 1
+    assert modulo(9, 3) == 0
+
+def test_modulo_by_zero():
+    with pytest.raises(ValueError):
+        modulo(5, 0)
