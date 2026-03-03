@@ -22,9 +22,9 @@ jobs:
         run: pip install openai
 
       - name: Get PR diff
-        run: gh pr diff ${{ github.event.pull_request.number }} -- src/ tests/ > pr.diff
-        env:
-          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch origin main
+          git diff origin/main...HEAD -- src/ tests/ > pr.diff || true
 
       - name: Run AI review
         run: python .github/scripts/review.py
